@@ -19,7 +19,10 @@
         'data/security/ir.model.access.csv',
 
         # # Views
-        # 'views/real_estate_offer_views.xml',
+
+        'views/estate_property_views.xml',
+        'views/estate_menus.xml',
+
         # 'views/real_estate_property_type_views.xml',
         # 'views/real_estate_property_views.xml',  # Depends on `real_estate_offer_views.xml`.
         # 'views/real_estate_tag_views.xml',

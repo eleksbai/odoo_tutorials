@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+            id="estate.root_menu"
+            name="Estate"
+            web_icon="estate,static/description/icon.png"
+    >
+        <menuitem id="estate.configuration_menu" name="Advertisements" sequence="20">
+            <menuitem
+                    id="estate.properties_menu"
+                    action="estate.view_properties_action"
+            />
+
+        </menuitem>
+
+    </menuitem>
+
+</odoo>
