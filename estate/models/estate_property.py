@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 from dateutil.relativedelta import relativedelta
 
@@ -28,7 +28,9 @@ class EstateProperty(models.Model):
         string="Salesperson", comodel_name='res.users', default=lambda self: self.env.user
     )
     tag_ids = fields.Many2many(comodel_name='estate_property_tag', string="Tags", )
-    offer_ids = fields.One2many( 'estate_property_offer', 'property_id', string="Offers")
+    offer_ids = fields.One2many('estate_property_offer', 'property_id', string="Offers")
+    total_area = fields.Float(compute="_compute_total", readonly=True,  store=True )
+    best_price = fields.Float(compute="_compute_best_price", readonly=True)
     active = fields.Boolean(string="Active", default=True)
     state = fields.Selection(string="Property Garden State", selection=[
         ('New', 'New'),
@@ -37,3 +39,24 @@ class EstateProperty(models.Model):
         ('Sold', 'Sold'),
         ('Cancelled', 'Cancelled'),
     ], default="New", required=True, copy=False)
+
+    @api.depends("living_area", 'garden_area')
+    def _compute_total(self):
+        for record in self:
+            record.total_area = record.living_area + record.garden_area
+
+    def _compute_best_price(self):
+        for record in self:
+            if len(record.offer_ids) > 0:
+                record.best_price = max(record.offer_ids.mapped('price'))
+            else:
+                record.best_price = None
+
+    @api.onchange("garden")
+    def _onchange_partner_id(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = 'North'
+        else:
+            self.garden_area = None
+            self.garden_orientation = None

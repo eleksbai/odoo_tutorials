@@ -40,6 +40,8 @@
                         <group>
                             <field name="postcode" string="Postcode"/>
                             <field name="date_availability" string="Available From"/>
+                            <field name="total_area" string="Total area"/>
+                            <field name="best_price" string="Best price"/>
                         </group>
                         <group>
                             <field name="property_type_id" string="房产类型"/>
@@ -68,7 +70,7 @@
                         </page>
                         <page string="Offers">
                             <group>
-                                <field name="offer_ids" >
+                                <field name="offer_ids">
                                 </field>
                             </group>
                         </page>
