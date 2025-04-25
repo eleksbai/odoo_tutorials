@@ -14,6 +14,7 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name" string="Title"/>
+                <field name="offer_count"/>
                 <field name="postcode" string="Postcode"/>
                 <field name="bedrooms" string="Bedrooms"/>
                 <field name="living_area" string="Living area (sqm)"/>

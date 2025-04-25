@@ -2,12 +2,17 @@ import datetime
 from email.policy import default
 
 from odoo import models, fields, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import float_compare
 
 
 class PropertyOffer(models.Model):
     _name = "estate_property_offer"
     _description = "Property Offers"
+    _sql_constraints = [
+        ('check_price', 'CHECK(price > 0)', 'A offer price must be positive.')
+    ]
+
     price = fields.Float(string="Price", required=True)
     state = fields.Selection(string="Property state", selection=[('Accepted', 'Accepted'), ('Rejected', 'Rejected')],
                              copy=False)
@@ -63,3 +68,10 @@ class PropertyOffer(models.Model):
         for record in self:
             pass
         return True
+
+    @api.constrains('price')
+    def _check_price(self):
+        for record in self:
+            # 小于， 返回-1
+            if float_compare(record.price, record.property_id.expected_price * 0.8, 2) <= 0:
+                raise ValidationError("Selling price cannot be lower than 90% of the expected price.")

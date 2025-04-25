@@ -8,6 +8,12 @@ class EstateProperty(models.Model):
     _name = "estate_property"
     _description = "Estate Property"
 
+    _sql_constraints = [
+        ('check_expected_price', 'CHECK(expected_price >= 0)', 'A property expected price must be strictly positive.'),
+        ('check_selling_price', 'CHECK(selling_price >= 0)', 'A property selling price must be positive.')
+        , ('unique_name', 'unique(name)', "A property name must be unique.")
+    ]
+
     name = fields.Char(string="Property Name", required=True)
     description = fields.Text(string="Property Description", copy=False)
     postcode = fields.Char(string="Property Postcode")
@@ -32,6 +38,7 @@ class EstateProperty(models.Model):
     offer_ids = fields.One2many('estate_property_offer', 'property_id', string="Offers")
     total_area = fields.Float(compute="_compute_total", readonly=True, store=True)
     best_price = fields.Float(compute="_compute_best_price", readonly=True)
+    offer_count = fields.Integer(compute="_compute_offer_count", readonly=True)
     active = fields.Boolean(string="Active", default=True)
     state = fields.Selection(string="Property Garden State", selection=[
         ('New', 'New'),
@@ -79,3 +86,8 @@ class EstateProperty(models.Model):
                 raise UserError("This property is  sold.")
             record.state = 'Cancelled'
         return True
+
+    @api.depends("living_area", 'garden_area')
+    def _compute_offer_count(self):
+        for record in self:
+            record.offer_count = len(record.offer_ids)
