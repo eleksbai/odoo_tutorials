@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="estate.estate_offer_list" model="ir.ui.view">
+        <!--                <field name="name">Property List</field>-->
+        <field name="model">estate_property_offer</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="buyer_id" string="Buyer"/>
+                <field name="price" string="Price"/>
+                <field name="status" string="Status"/>
+            </list>
+        </field>
+    </record>
+</odoo>

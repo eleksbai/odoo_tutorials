@@ -22,7 +22,13 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer(string="Property Garden Area")
     garden_orientation = fields.Selection(string="Property Garden Orientation",
                                           selection=[('North', '北'), ('South', '男'), ('West', '西'), ('East', '东')])
-
+    property_type_id = fields.Many2one(comodel_name="estate_property_type", string="Property Type", required=True)
+    buyer_id = fields.Many2one(comodel_name='res.partner', string='buyer', required=True)
+    salesperson_id = fields.Many2one(
+        string="Salesperson", comodel_name='res.users', default=lambda self: self.env.user
+    )
+    tag_ids = fields.Many2many(comodel_name='estate_property_tag', string="Tags", )
+    offer_ids = fields.One2many( 'estate_property_offer', 'property_id', string="Offers")
     active = fields.Boolean(string="Active", default=True)
     state = fields.Selection(string="Property Garden State", selection=[
         ('New', 'New'),

@@ -20,6 +20,8 @@
 
         # # Views
 
+        'views/estate_property_offer.xml',
+        'views/estate_property_tags.xml',
         'views/estate_property_views.xml',
         'views/property_type.xml',
         'views/estate_menus.xml',

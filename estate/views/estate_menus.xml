@@ -15,6 +15,10 @@
                     id="estate.properties_type"
                     action="estate.view_property_type_action"
             />
+         <menuitem
+                    id="estate.properties_tags"
+                    action="estate.view_property_tag_action"
+            />
 
         </menuitem>
 
