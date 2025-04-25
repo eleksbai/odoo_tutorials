@@ -1,10 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="estate.view_properties_action"   model="ir.actions.act_window">
+    <record id="estate.view_properties_action" model="ir.actions.act_window">
         <field name="name">房地产</field>
 
-    <field name="res_model">estate_property</field>
-    <field name="view_mode">list,form</field>
+        <field name="res_model">estate_property</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="estate.estate_property_list1" model="ir.ui.view">
+<!--                <field name="name">Property List</field>-->
+        <field name="model">estate_property</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Title"/>
+                <field name="postcode" string="Postcode"/>
+                <field name="bedrooms" string="Bedrooms"/>
+                <field name="living_area" string="Living area (sqm)"/>
+                <field name="expected_price" string="Expected Price"/>
+                <field name="selling_price" string="Selling Price"/>
+                <field name="date_availability" string="Available Form"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="estate.estate_property_form" model="ir.ui.view">
+        <field name="name">Property Form</field>
+        <field name="model">estate_property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Property Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Tiny House"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="postcode" string="Postcode"/>
+                            <field name="date_availability" string="Available From"/>
+                        </group>
+                        <group>
+                            <field name="expected_price" string="Expected Price"/>
+                            <field name="selling_price" string="Selling Price"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group>
+                                <field name="description"/>
+                                <field name="bedrooms" string="Bedrooms"/>
+                                <field name="living_area" string="Living area (sqm)"/>
+                                <field name="facades" string="Facades"/>
+                                <field name="garage" string="Garage"/>
+                                <field name="garden" string="Garden"/>
+                                <field name="garden_area" string="Garden area (sqm)"/>
+                                <field name="garden_orientation" string="Garden Orientation"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="estate.property_search" model="ir.ui.view">
+        <field name="name">Property Search</field>
+        <field name="model">estate_property</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Fields -->
+                <field name="name"/>
+                <field
+                        name="description"
+                        filter_domain="['|', ('name', 'ilike', self), ('description', 'ilike', self)]"
+                />
+                <field name="expected_price" string="Maximum Price" operator="&lt;="/>
+                <field name="bedrooms" string="Minimum Bedrooms" operator="&gt;="/>
+
+                <!-- Filters -->
+                <filter
+                        name="filter_for_sale"
+                        string="For Sale"
+                        domain="[('state', 'in', ['new', 'offer_received'])]"
+                />
+                <separator/>
+                <!--                <filter name="filter_availability" date="availability_date"/>-->
+                <!--                <separator/>-->
+                <filter name="filter_garage" string="Garage" domain="[('garage', '=', True)]"/>
+                <filter name="filter_garden" string="Garden" domain="[('garden', '=', True)]"/>
+                <separator/>
+                <filter name="filter_inactive" string="Archived" domain="[('active', '=', False)]"/>
+
+                <!-- Group by -->
+                <filter name="group_by_state" context="{'group_by': 'state'}"/>
+                <filter name="group_by_postcode" context="{'group_by': 'postcode'}"/>
+            </search>
+        </field>
     </record>
 
 </odoo>

@@ -11,6 +11,10 @@
                     id="estate.properties_menu"
                     action="estate.view_properties_action"
             />
+            <menuitem
+                    id="estate.properties_type"
+                    action="estate.view_property_type_action"
+            />
 
         </menuitem>
 
