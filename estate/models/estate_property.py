@@ -7,7 +7,7 @@ from odoo.exceptions import UserError
 class EstateProperty(models.Model):
     _name = "estate_property"
     _description = "Estate Property"
-
+    _order = "id desc"
     _sql_constraints = [
         ('check_expected_price', 'CHECK(expected_price >= 0)', 'A property expected price must be strictly positive.'),
         ('check_selling_price', 'CHECK(selling_price >= 0)', 'A property selling price must be positive.')
@@ -29,13 +29,13 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer(string="Property Garden Area")
     garden_orientation = fields.Selection(string="Property Garden Orientation",
                                           selection=[('North', '北'), ('South', '男'), ('West', '西'), ('East', '东')])
-    property_type_id = fields.Many2one(comodel_name="estate_property_type", string="Property Type", required=True)
+    property_type_id = fields.Many2one(comodel_name="estate_property_type", string="Property Type", required=True )
     buyer_id = fields.Many2one(comodel_name='res.partner', string='buyer', )
     salesperson_id = fields.Many2one(
         string="Salesperson", comodel_name='res.users', default=lambda self: self.env.user
     )
     tag_ids = fields.Many2many(comodel_name='estate_property_tag', string="Tags", )
-    offer_ids = fields.One2many('estate_property_offer', 'property_id', string="Offers")
+    offer_ids = fields.One2many('estate_property_offer', 'property_id',    string="Offers")
     total_area = fields.Float(compute="_compute_total", readonly=True, store=True)
     best_price = fields.Float(compute="_compute_best_price", readonly=True)
     offer_count = fields.Integer(compute="_compute_offer_count", readonly=True)

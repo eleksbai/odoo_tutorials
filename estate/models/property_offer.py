@@ -9,10 +9,12 @@ from odoo.tools import float_compare
 class PropertyOffer(models.Model):
     _name = "estate_property_offer"
     _description = "Property Offers"
+    # _order = "price desc"
     _sql_constraints = [
         ('check_price', 'CHECK(price > 0)', 'A offer price must be positive.')
     ]
-
+    property_type_id = fields.Many2one('estate_property_type', string="Property Type", compute='_compute_property_type',
+                                       store=True)
     price = fields.Float(string="Price", required=True)
     state = fields.Selection(string="Property state", selection=[('Accepted', 'Accepted'), ('Rejected', 'Rejected')],
                              copy=False)
@@ -26,6 +28,11 @@ class PropertyOffer(models.Model):
     def _compute_date_deadline(self):
         for record in self:
             record.date_deadline = record.create_date + datetime.timedelta(days=record.validity)
+
+    @api.depends('property_id')
+    def _compute_property_type(self):
+        for record in self:
+            record.property_type_id = record.property_id.property_type_id
 
     def _inverse_date_deadline(self):
         for record in self:

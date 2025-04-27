@@ -5,6 +5,7 @@
 
         <field name="res_model">estate_property</field>
         <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_filter_for_sale': True }</field>
     </record>
 
 
@@ -12,7 +13,11 @@
         <!--                <field name="name">Property List</field>-->
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
-            <list>
+            <list
+                    decoration-success="state in ['Offer Received','Offer Accepted']"
+                    decoration-bf="state=='Offer Accepted'"
+                    decoration-muted="state=='Sold'"
+            >
                 <field name="name" string="Title"/>
                 <field name="offer_count"/>
                 <field name="postcode" string="Postcode"/>
@@ -20,7 +25,7 @@
                 <field name="living_area" string="Living area (sqm)"/>
                 <field name="expected_price" string="Expected Price"/>
                 <field name="selling_price" string="Selling Price"/>
-                <field name="date_availability" string="Available Form"/>
+                <field name="date_availability" string="Available Form" optional="hide"/>
             </list>
         </field>
     </record>
@@ -30,37 +35,45 @@
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <div invisible="state in ['Sold','']">
+                        <button name="property_sold" type="object" string="已售"/>
+                        <button name="property_cancel" type="object" string="取消售卖"/>
+                    </div>
+                    <field name="state" widget="statusbar" options="{'clickable': True}"
+                           statusbar_visible="New,Offer Received,Offer Accepted,Sold"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
-                        <header>
-                            <button name="property_sold" type="object" string="已售"/>
-                            <button name="property_cancel" type="object" string="取消售卖"/>
-                        </header>
-                        <label for="name" string="Property Name"/>
                         <h1>
                             <field name="name" placeholder="e.g. Tiny House"/>
                         </h1>
                     </div>
                     <group>
+                        <field name="tag_ids" string="房产特点" widget="many2many_tags" editable="true"
+                               options="{'no_quick_create': true, 'color_field': 'color'
+                                 }"/>
                         <group>
-                            <field name="state"  />
+                            <field name="property_type_id" string="房产类型" options="{'no_create':true}"/>
                             <field name="postcode" string="Postcode"/>
                             <field name="date_availability" string="Available From"/>
-                            <field name="total_area" string="Total area"/>
-                            <field name="best_price" string="Best price"/>
+                            <!--                            <field name="total_area" string="Total area"/>-->
+                            <!--                            <field name="best_price" string="Best price"/>-->
                         </group>
-                        <group>
-                            <field name="property_type_id" string="房产类型"/>
-                            <field name="buyer_id" string="购买者"/>
-                            <field name="salesperson_id" string="业务员"/>
-                            <field name="tag_ids" string="房产特点" widget="many2many_tags"/>
+                        <!--                        <group>-->
+                        <!--                            <field name="buyer_id" string="购买者"/>-->
+                        <!--                            <field name="salesperson_id" string="业务员"/>-->
 
-                        </group>
+                        <!--                        </group>-->
                         <group>
                             <field name="expected_price" string="Expected Price"/>
+                            <field name="best_price" string="Best Offer"/>
                             <field name="selling_price" string="Selling Price"/>
                         </group>
+
                     </group>
+
+
                     <notebook>
                         <page string="Description">
                             <group>
@@ -70,15 +83,35 @@
                                 <field name="facades" string="Facades"/>
                                 <field name="garage" string="Garage"/>
                                 <field name="garden" string="Garden"/>
-                                <field name="garden_area" string="Garden area (sqm)"/>
-                                <field name="garden_orientation" string="Garden Orientation"/>
+                                <field name="garden_area" string="Garden area (sqm)" invisible="not garden"/>
+                                <field name="garden_orientation" string="Garden Orientation" invisible="not garden"/>
                             </group>
                         </page>
                         <page string="Offers">
-                            <group>
-                                <field name="offer_ids">
-                                </field>
-                            </group>
+                            <field name="offer_ids" readonly="state in ['Sold','Cancelled']">
+                                <list default_order="price desc" editable="bottom"
+                                      decoration-success="state=='Accepted'"
+                                      decoration-danger="state=='Rejected'"
+                                >
+                                    <field name="buyer_id" string="Buyer"/>
+                                    <field name="price" string="Price"/>
+                                    <field name="property_type_id"/>
+                                    <field name="state" string="State" optional="hide"/>
+                                    <field name="create_date"/>
+                                    <field name="validity"/>
+                                    <field name="date_deadline"/>
+                                    <!-- 这个只能单次操作，操作完就隐藏-->
+                                    <button name="action_accept" title="accept" type="object" icon="fa-check"
+                                            invisible="state"/>
+                                    <!--                <button name="action_set_done" string="Mark as Attending" type="object" icon="fa-level-down"-->
+                                    <!--                        invisible="state"/>-->
+                                    <button name="action_refuse" title="reject" type="object" icon="fa-times"
+                                            invisible="state"/>
+
+                                </list>
+
+                            </field>
+
                         </page>
                     </notebook>
                 </sheet>
@@ -100,12 +133,13 @@
                 />
                 <field name="expected_price" string="Maximum Price" operator="&lt;="/>
                 <field name="bedrooms" string="Minimum Bedrooms" operator="&gt;="/>
+                <field name="living_area" string="Minimum Living Area" operator="&gt;="/>
 
                 <!-- Filters -->
                 <filter
                         name="filter_for_sale"
                         string="For Sale"
-                        domain="[('state', 'in', ['new', 'offer_received'])]"
+                        domain="[('state', 'not in', [ 'Sold', 'Cancelled'])]"
                 />
                 <separator/>
                 <!--                <filter name="filter_availability" date="availability_date"/>-->
