@@ -19,7 +19,7 @@ class PropertyOffer(models.Model):
     state = fields.Selection(string="Property state", selection=[('Accepted', 'Accepted'), ('Rejected', 'Rejected')],
                              copy=False)
     buyer_id = fields.Many2one(comodel_name='res.partner', string="Buyer", required=True)
-    property_id = fields.Many2one(comodel_name='estate_property', string="Property", required=True)
+    property_id = fields.Many2one(comodel_name='estate_property', string="Property", required=True, ondelete='cascade')
     create_date = fields.Date(string="Create Date", default=fields.Date.today)
     validity = fields.Integer(string="Validity day", default=7)
     date_deadline = fields.Date(string="Deadline", compute='_compute_date_deadline', inverse='_inverse_date_deadline')
@@ -82,3 +82,22 @@ class PropertyOffer(models.Model):
             # 小于， 返回-1
             if float_compare(record.price, record.property_id.expected_price * 0.8, 2) <= 0:
                 raise ValidationError("Selling price cannot be lower than 90% of the expected price.")
+
+    # @api.model
+    # def create(self, vals):
+    #     # for record in self:
+    #     #     record.property_id.state = "Offer Received"
+    #     #     max_offer_price = max(record.property_id.offer_ids.mapped('price'))
+    #     #     if vals['price'] < max_offer_price:
+    #     #         raise ValidationError("Offer price cannot be lower than the exited offer price.")
+    #     return super().create(vals)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            property_m = self.env['estate_property'].browse(vals['property_id'])
+            max_offer_price = max(property_m.offer_ids.mapped('price'))
+            if vals['price'] < max_offer_price:
+                raise UserError("Offer price cannot be lower than the exited offer price.")
+            property_m.state = "Offer Received"
+        return super().create(vals_list)

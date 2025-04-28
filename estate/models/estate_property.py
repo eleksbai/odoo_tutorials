@@ -91,3 +91,9 @@ class EstateProperty(models.Model):
     def _compute_offer_count(self):
         for record in self:
             record.offer_count = len(record.offer_ids)
+
+    @api.ondelete(at_uninstall=False)
+    def _prevent_delete(self ):
+        for record in self:
+            if record.state not in ['New', 'Cancelled']:
+                raise UserError("This property  state is not ‘New’ or ‘Cancelled’")

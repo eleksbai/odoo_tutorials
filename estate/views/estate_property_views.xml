@@ -19,6 +19,7 @@
                     decoration-muted="state=='Sold'"
             >
                 <field name="name" string="Title"/>
+                <field name="state"/>
                 <field name="offer_count"/>
                 <field name="postcode" string="Postcode"/>
                 <field name="bedrooms" string="Bedrooms"/>
@@ -36,7 +37,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <div invisible="state in ['Sold','']">
+                    <div invisible="state in ['Sold','Cancelled']">
                         <button name="property_sold" type="object" string="已售"/>
                         <button name="property_cancel" type="object" string="取消售卖"/>
                     </div>
