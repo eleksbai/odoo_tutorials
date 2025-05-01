@@ -2,26 +2,26 @@
 <odoo>
 
     <menuitem
-            id="estate.root_menu"
+            id="ee_estate.root_menu"
             name="Estate"
-            web_icon="estate,static/description/icon.png"
+            web_icon="ee_estate,static/description/icon.png"
     >
-        <menuitem id="estate.configuration_menu" name="Advertisements" sequence="20">
+        <menuitem id="ee_estate.configuration_menu" name="Advertisements" sequence="20">
             <menuitem
-                    id="estate.properties_menu"
-                    action="estate.view_properties_action"
+                    id="ee_estate.properties_menu"
+                    action="ee_estate.view_properties_action"
             />
             <menuitem
-                    id="estate.properties_menu_kanban"
-                    action="estate.view_properties_kanban_action"
+                    id="ee_estate.properties_menu_kanban"
+                    action="ee_estate.view_properties_kanban_action"
             />
             <menuitem
-                    id="estate.properties_type"
-                    action="estate.view_property_type_action"
+                    id="ee_estate.properties_type"
+                    action="ee_estate.view_property_type_action"
             />
             <menuitem
-                    id="estate.properties_tags"
-                    action="estate.view_property_tag_action"
+                    id="ee_estate.properties_tags"
+                    action="ee_estate.view_property_tag_action"
             />
 
         </menuitem>

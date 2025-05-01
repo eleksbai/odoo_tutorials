@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="estate.view_properties_action" model="ir.actions.act_window">
+    <record id="ee_estate.view_properties_action" model="ir.actions.act_window">
         <field name="name">房地产</field>
 
         <field name="res_model">estate_property</field>
@@ -9,7 +9,7 @@
     </record>
 
 
-    <record id="estate.estate_property_list" model="ir.ui.view">
+    <record id="ee_estate.estate_property_list" model="ir.ui.view">
         <!--                <field name="name">Property List</field>-->
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
@@ -31,7 +31,7 @@
         </field>
     </record>
 
-    <record id="estate.estate_property_form" model="ir.ui.view">
+    <record id="ee_estate.estate_property_form" model="ir.ui.view">
         <field name="name">Property Form</field>
         <field name="model">estate_property</field>
         <field name="arch" type="xml">
@@ -121,7 +121,7 @@
     </record>
 
 
-    <record id="estate.property_search" model="ir.ui.view">
+    <record id="ee_estate.property_search" model="ir.ui.view">
         <field name="name">Property Search</field>
         <field name="model">estate_property</field>
         <field name="arch" type="xml">

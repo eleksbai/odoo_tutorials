@@ -24,9 +24,10 @@
         'views/estate_property_tags.xml',
         'views/estate_property_views.xml',
         'views/property_type.xml',
-        'views/estate_menus.xml',
+
         'views/estate_salesperson_property.xml',
         'views/estate_kanban.xml',
+        'views/estate_menus.xml',
 
         # 'views/real_estate_property_type_views.xml',
         # 'views/real_estate_property_views.xml',  # Depends on `real_estate_offer_views.xml`.
