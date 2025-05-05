@@ -12,6 +12,7 @@ tutorial's solutions. For example, `17.0`, `17.0-discover-js-framework-solutions
 
 # 备注
 
+## 服务器框架101课程
 花了一些时间学习了[odoo的官方教程](https://www.odoo.com/documentation/18.0/developer/tutorials/server_framework_101.html)。
 教程是没有问题的，指向的一些示例代码可能已经过时。
 官方教程似乎没有完整的教程源码作为参考，所以我把学习过程的写的代码放出来做参考。
@@ -19,3 +20,7 @@ tutorial's solutions. For example, `17.0`, `17.0-discover-js-framework-solutions
 
 学完后可以看下这个[odoo的编码指南](https://www.odoo.com/documentation/18.0/contributing/development/coding_guidelines.html#)
 ，我觉得这个写得比较细致，对新人比较友好。
+
+## web框架教程
+web教程是在它配好的demo上进行修改。已经默认配好了网页路由。
+通过这个[入口](http://localhost:8069/awesome_owl/)来访问 
