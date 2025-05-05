@@ -2,12 +2,10 @@
 <templates xml:space="preserve">
 
     <t t-name="awesome_owl.playground">
-        <div class="p-3">
-            hello world
-                    <p>Counter: <t t-esc="state.value"/></p>
-            <button t-on-click="increment">Increment</button>
-        </div>
-
+        <h1>第一个计时器</h1>
+        <Counter/>
+        <h1>第二个计时器</h1>
+        <Counter/>
     </t>
 
 </templates>
