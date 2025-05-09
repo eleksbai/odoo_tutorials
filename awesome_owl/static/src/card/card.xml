@@ -4,11 +4,13 @@
        <div class="card d-inline-block m-2" style="width: 18rem;">
     <div class="card-body">
         <h5 class="card-title">
-            <t t-esc="props.title"/>
+            <t t-esc="props.title"/>(<t t-esc="props.size"/>字)
         </h5>
         <p class="card-text">
              <t t-out="props.content"/>
+
         </p>
+        <p>  <t t-esc="props.note"/></p>
     </div>
 
 </div>

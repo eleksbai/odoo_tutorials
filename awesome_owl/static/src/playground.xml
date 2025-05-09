@@ -6,11 +6,11 @@
         <Counter/>
         <h1>第二个计时器</h1>
         <Counter/>
-<!--        <Card title="'my title1'" content="'<div class='text-primary'>some content1</div>'"/>-->
-        <Card title="'my title1'" content="'some content'"/>
-        <Card title="'my title2'" content="'some content2'"/>
-        <Card title="'my title3'" content="this.html3"/>
-        <Card title="'my title4'" content="this.html4"/>
+        <!--        <Card title="'my title1'" content="'<div class='text-primary'>some content1</div>'"/>-->
+        <Card title="'my11111'" content="'some content'" size="15"  />
+        <Card title="'my tit2'" content="'some content2'" size="15" note="'Hello Note'"  />
+        <Card title="'my tit3'" content="this.html3" size="11"  />
+        <Card title="'my tit4'" content="this.html4" size="15"  />
     </t>
 
 </templates>
