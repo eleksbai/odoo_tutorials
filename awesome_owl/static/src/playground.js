@@ -6,9 +6,20 @@ import {Card} from "./card/card"; //
 
 export class Playground extends Component {
     static template = "awesome_owl.playground";
+    // sum = useState({total: 0});
     static props = [];
     static components = {Counter, Card}; // 注册 Counter 子组件
     html3 = "<div class='text-primary'>some content3</div>"
     html4 = markup("<div class='text-primary'>some content4</div>");
+
+    setup() {
+        this.sum = useState({total: 0});
+        // 不使用bind语法，就要在这里做个绑定
+        // this.incrementSum = this.incrementSum.bind(this);
+    }
+
+    incrementSum(value) {
+        this.sum.total += value;
+    }
 }
 
