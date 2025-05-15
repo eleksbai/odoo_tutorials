@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+  <t t-name="awesome_owl.todolist">
+<!--    <t t-foreach="todos" t-as="item" t-key="item.id">-->
+      <!--      <row>-->
+      <!--          <p t-esc="item.isCompleted"/>-->
+      <!--          <p t-esc="item.id"/>-->
+      <!--          <p t-esc="item.description"/>-->
+      <!--      </row>-->
+
+      <div class="Card">
+            <t t-foreach="todos" t-as="item" t-key="item.id">
+            <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"/>
+            </t>
+      </div>
+  </t>
+</templates>

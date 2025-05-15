@@ -14,6 +14,7 @@
         <Card title="'my tit2'" content="'some content2'" size="15" note="'Hello Note'"/>
         <Card title="'my tit3'" content="this.html3" size="11"/>
         <Card title="'my tit4'" content="this.html4" size="15"/>
+        <Todolist/>
     </t>
 
 </templates>
