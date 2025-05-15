@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import {Component, useState} from "@odoo/owl";
+import {Component, useState, useRef} from "@odoo/owl";
 
 export class TodoItem extends Component {
     static template = "awesome_owl.todoitem";
@@ -8,5 +8,18 @@ export class TodoItem extends Component {
         id: {type: Number},
         description: {type: String},
         isCompleted: {type: Boolean},
+        toggleState: {type: Function},
     };
+
+    setup() {
+        this.checkRef = useRef('check');
+        this.changeCompleted = this.changeCompleted.bind(this);
+    }
+
+
+    changeCompleted(event,todoId) {
+        debugger
+        this.props.toggleState(this.props.id, this.checkRef.el.checked)
+
+    }
 }

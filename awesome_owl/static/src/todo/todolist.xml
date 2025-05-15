@@ -10,10 +10,11 @@
 
       <div class="Card">
 
-          <input id="newTodoInput" t-on-keyup="onKeyup" class="form-control " style="width: 300px;"
+          <input t-ref="input" id="newTodoInput" t-on-keyup="onKeyup" class="form-control " style="width: 300px;"
                  placeholder="Enter a new task"/>
           <t t-foreach="todos" t-as="item" t-key="item.id">
-            <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"/>
+            <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"
+                      toggleState.bind="toggleState"/>
             </t>
       </div>
   </t>
