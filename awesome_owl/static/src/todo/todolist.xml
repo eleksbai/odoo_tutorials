@@ -14,7 +14,9 @@
                  placeholder="Enter a new task"/>
           <t t-foreach="todos" t-as="item" t-key="item.id">
             <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"
-                      toggleState.bind="toggleState"/>
+                      toggleState.bind="toggleState"
+            removeTodo.bind="removeTodo"
+            />
             </t>
       </div>
   </t>

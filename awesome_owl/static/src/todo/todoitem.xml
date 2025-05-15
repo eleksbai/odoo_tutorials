@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
   <t t-name="awesome_owl.todoitem">
     <div>
-      <input t-ref="check"  class="form-check-input" type="checkbox"
-             t-on-change="e => changeCompleted(e,  props.id )"
+      <input t-ref="check" class="form-check-input" type="checkbox"
+             t-on-change="changeCompleted"
              t-att-checked="props.isCompleted"/>
         <span t-att-class="{'text-muted':props.isCompleted,'text-decoration-line-through':props.isCompleted}">
 <!--        [<t t-esc="props.isCompleted"/>]-->
@@ -11,6 +11,7 @@
             <t t-esc="props.description"/>
             <t t-esc="props.title"/>
       </span>
+        <span t-on-click="onDelete" class="fa fa-remove"/>
     </div>
   </t>
 </templates>

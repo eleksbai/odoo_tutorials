@@ -29,7 +29,7 @@ export class Todolist extends Component {
         console.log("Add Todo Item start")
         const newTodoText = newTodoInput.value.trim();
         if (newTodoText) {
-            this.todos.push({id: this.todos.length + 1, description: newTodoText, isCompleted: false});
+            this.todos.push({id: this.findMax() + 1, description: newTodoText, isCompleted: false});
             newTodoInput.value = "";
             // this.inputRef.value = ""
 
@@ -50,6 +50,24 @@ export class Todolist extends Component {
         if (todo) {
             todo.isCompleted = isCompleted
         }
+    }
+
+    removeTodo(todoId) {
+        const index = this.todos.findIndex(todo => todo.id === todoId);
+        if (index >= 0) {
+            // remove the element at index from list
+            this.todos.splice(index, 1);
+        }
+    }
+
+    findMax() {
+        var max = 0;
+        for (const todo of this.todos) {
+            if (todo.id > max) {
+                max = todo.id
+            }
+        }
+        return max;
     }
 
 
