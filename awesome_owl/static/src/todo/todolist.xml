@@ -9,7 +9,10 @@
       <!--      </row>-->
 
       <div class="Card">
-            <t t-foreach="todos" t-as="item" t-key="item.id">
+
+          <input id="newTodoInput" t-on-keyup="onKeyup" class="form-control " style="width: 300px;"
+                 placeholder="Enter a new task"/>
+          <t t-foreach="todos" t-as="item" t-key="item.id">
             <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"/>
             </t>
       </div>
