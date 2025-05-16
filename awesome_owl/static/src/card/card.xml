@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-   <t t-name="awesome_owl.card">
+   <div t-name="awesome_owl.card">
        <div class="card d-inline-block m-2" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
-            <t t-esc="props.title"/>(<t t-esc="props.size"/>字)
-        </h5>
-        <p class="card-text">
-             <t t-out="props.content"/>
+           <div class="card-body">
+               <h5 class="card-title">
+                  <t t-esc="props.slots['default'].title"/>
+               </h5>
+               <t t-slot="default"/>
 
-        </p>
-        <p>  <t t-esc="props.note"/></p>
-    </div>
-
-</div>
-       </t>
+               <!--       <t t-slot="body">default content</t>-->
+               <!--         <t t-slot="default"/>-->
+               <!--        <p class="card-text">-->
+               <!--             <t t-out="props.content"/>-->
+               <!--        </p>-->
+               <!--        <p>  <t t-esc="props.note"/></p>-->
+           </div>
+       </div>
+   </div>
 </templates>

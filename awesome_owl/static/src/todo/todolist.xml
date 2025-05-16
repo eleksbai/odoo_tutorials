@@ -8,16 +8,16 @@
       <!--          <p t-esc="item.description"/>-->
       <!--      </row>-->
 
-      <div class="Card">
 
-          <input t-ref="input" id="newTodoInput" t-on-keyup="onKeyup" class="form-control " style="width: 300px;"
-                 placeholder="Enter a new task"/>
+      <input t-ref="input" id="newTodoInput" t-on-keyup="onKeyup" class="form-control "
+             placeholder="Enter a new task"/>
+<!--      <div class="Card">-->
           <t t-foreach="todos" t-as="item" t-key="item.id">
             <TodoItem isCompleted="item.isCompleted" id="item.id" description="item.description"
                       toggleState.bind="toggleState"
-            removeTodo.bind="removeTodo"
+                      removeTodo.bind="removeTodo"
             />
             </t>
-      </div>
+<!--      </div>-->
   </t>
 </templates>

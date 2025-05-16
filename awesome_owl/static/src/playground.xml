@@ -3,18 +3,54 @@
 
     <t t-name="awesome_owl.playground">
         <div>
-            <row>计数器一:<Counter onChange.bind="incrementSum" /></row>
-            <row>计数器二:  <Counter onChange.bind="incrementSum"/></row>
-<!--            <row>计数器二:  <Counter t-props="{onChange: incrementSum}"/></row>-->
+            <Card>
+                <t t-set-slot="default" title.translate="计数器一">
+                        <Counter onChange.bind="incrementSum"/>
+                </t>
+            </Card>
+            <Card>
+                <t t-set-slot="default" title.translate="计数器二">
+                        <Counter onChange.bind="incrementSum"/>
+                </t>
+            </Card>
             <p>Sum of Counters: <t t-esc="sum.total"/></p>
+
+
         </div>
 
         <!--        <Card title="'my title1'" content="'<div class='text-primary'>some content1</div>'"/>-->
-        <Card title="'my11111'" content="'some content'" size="15"/>
-        <Card title="'my tit2'" content="'some content2'" size="15" note="'Hello Note'"/>
-        <Card title="'my tit3'" content="this.html3" size="11"/>
-        <Card title="'my tit4'" content="this.html4" size="15"/>
-        <Todolist/>
+        <!--        <Card title="'my11111'" size="15"/>-->
+        <Card>
+            <t t-set-slot="default" title.translate="Page 1">
+                        <div>this is in the page 1</div>
+                </t>
+
+            <!--            <p>Hello</p>-->
+
+        </Card>
+        <!--        <Card>-->
+        <!--        <Card title="'my tit2'" size="15" note="''">-->
+        <!--                     <p class="card-text">-->
+        <!--          some content2-->
+        <!--        </p>-->
+        <!--            <p> Hello Note </p>-->
+        <!--        </Card>-->
+        <!--        <Card title="'my tit3'" size="11">-->
+        <!--                     <p class="card-text">-->
+        <!--             this.html3-->
+        <!--        </p>-->
+        <!--        </Card>-->
+        <!--        <Card title="'my tit4'" size="15">-->
+        <!--           <p class="card-text">-->
+        <!--             this.html4-->
+        <!--        </p>-->
+        <!--        </Card>-->
+            <Card>
+                <t t-set-slot="default" title.translate="Todolist">
+                        <Todolist/>
+                </t>
+            </Card>
+
     </t>
 
 </templates>

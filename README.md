@@ -24,4 +24,5 @@ tutorial's solutions. For example, `17.0`, `17.0-discover-js-framework-solutions
 ## web框架教程
 web教程是在它配好的demo上进行修改。已经默认配好了网页路由。
 通过这个[入口](http://localhost:8069/awesome_owl/)来访问 
-前期bootstrap的样式没有正常生效，后面再进行调整。
+
+slot本质是基于props所有和prop会有冲突

@@ -26,7 +26,6 @@ export class Todolist extends Component {
 
     addTodo() {
         const newTodoInput = this.inputRef.el
-        console.log("Add Todo Item start")
         const newTodoText = newTodoInput.value.trim();
         if (newTodoText) {
             this.todos.push({id: this.findMax() + 1, description: newTodoText, isCompleted: false});
@@ -34,7 +33,6 @@ export class Todolist extends Component {
             // this.inputRef.value = ""
 
         }
-        console.log("Add Todo Item")
     }
 
     onKeyup(event) {

@@ -2,8 +2,8 @@
 <templates xml:space="preserve">
    <t t-name="awesome_owl.counter">
        <div>
-           <p>Counter: <t t-esc="state.value"/></p> <!-- 显示计数器的值 -->
-           <button t-on-click="increment">Increment</button> <!-- 增加按钮 -->
+           <span>Counter: <t t-esc="state.value"/>    </span>  <!-- 显示计数器的值 -->
+           <button     t-on-click="increment">+1</button> <!-- 增加按钮 -->
        </div>
        </t>
 </templates>
