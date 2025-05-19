@@ -5,9 +5,13 @@
            <div class="card-body">
                <h5 class="card-title">
                   <t t-esc="props.slots['default'].title"/>
+                   <span> </span>
+                   <span> </span>
+                   <button t-on-click="toggle">toggler</button>
                </h5>
-               <t t-slot="default"/>
-
+               <t t-if="state.isOpen">
+                    <t t-slot="default"/>
+                </t>
                <!--       <t t-slot="body">default content</t>-->
                <!--         <t t-slot="default"/>-->
                <!--        <p class="card-text">-->
