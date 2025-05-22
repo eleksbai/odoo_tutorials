@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
-
     <t t-name="awesome_dashboard.AwesomeDashboard">
         <div class="o_action">
             <div class="m-2">
             <button class="btn btn-primary" t-on-click="openCustomers">Customers</button>
                 <button class="btn btn-primary " t-on-click="openLead">Leads</button>
-                <span></span>
-            </div>
+                <span>
 
+                </span>
+            </div>
+            z
             <Layout display="{ controlPanel: {} }" className="'o_dashboard h-100'">
-                <p>Hello World</p>
+<!--                <p>Hello World</p>-->
+                <DashboardItem title="'测试1'">
+                        <p>some content</p>
+                </DashboardItem>
+                <DashboardItem size="2" title="'测试2'">
+                       <p>I love milk.</p>
+                </DashboardItem>
+                <DashboardItem title="'测试3'">
+                        <p>some content</p>
+                </DashboardItem>
+
             </Layout>
         </div>
     </t>

@@ -25,7 +25,7 @@ tutorial's solutions. For example, `17.0`, `17.0-discover-js-framework-solutions
 web教程是在它配好的demo上进行修改。已经默认配好了网页路由。
 通过这个[入口](http://localhost:8069/awesome_owl/)来访问 
 
-slot本质是基于props所有和prop会有冲突
+slot本质是基于props,需要在props 定义出slot参数。
 
 
 # 第 2 章：构建仪表板 
