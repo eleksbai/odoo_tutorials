@@ -15,11 +15,16 @@ class AwesomeDashboard extends Component {
         this.action = useService("action");
         this.result = {}
         console.log("setup")
+        this.shareStateService = useService("shared_state");
+        this.statisticsService = useService("awesome_dashboard.statistics");
         onWillStart(async () => {
-            debugger
-            const result = await rpc("/awesome_dashboard/statistics");
+            // debugger
+            //
+
+            const result = await this.statisticsService.loadStatistics();
+            // const result = await rpc("/awesome_dashboard/statistics");
             this.result = result;
-            debugger
+            // debugger
         });
     }
 

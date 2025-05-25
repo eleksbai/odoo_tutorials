@@ -29,3 +29,7 @@ slot本质是基于props,需要在props 定义出slot参数。
 
 
 # 第 2 章：构建仪表板 
+
+服务中要注意生命周期的问题，使用useService可以放在setup里面，不能放在onWillStart里面
+memoize, 将函数包装为缓存函数，只有在页面刷新时才会触发重新加载。页面切换不触发。
+
