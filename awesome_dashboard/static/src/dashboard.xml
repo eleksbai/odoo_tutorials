@@ -47,6 +47,9 @@
                             </p>
                     <p class="text-success fs-1"><t t-esc="result.average_time"/></p>
                 </DashboardItem>
+                <DashboardItem size="2">
+                    <PieChart labels="Object.keys(result.orders_by_size)" data="Object.values(result.orders_by_size)"/>
+                </DashboardItem>
             </Layout>
         </div>
     </t>

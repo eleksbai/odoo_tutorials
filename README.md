@@ -21,6 +21,13 @@ tutorial's solutions. For example, `17.0`, `17.0-discover-js-framework-solutions
 学完后可以看下这个[odoo的编码指南](https://www.odoo.com/documentation/18.0/contributing/development/coding_guidelines.html#)
 ，我觉得这个写得比较细致，对新人比较友好。
 
+启动配置参考
+
+```shell
+
+odoo-bin -c  dist/dev.conf.txt -u estate --dev xml
+```
+
 ## 第 1 章：Owl 组件
 web教程是在它配好的demo上进行修改。已经默认配好了网页路由。
 通过这个[入口](http://localhost:8069/awesome_owl/)来访问 
@@ -32,4 +39,6 @@ slot本质是基于props,需要在props 定义出slot参数。
 
 服务中要注意生命周期的问题，使用useService可以放在setup里面，不能放在onWillStart里面
 memoize, 将函数包装为缓存函数，只有在页面刷新时才会触发重新加载。页面切换不触发。
+
+onWillStart 似乎必须放setup里面
 

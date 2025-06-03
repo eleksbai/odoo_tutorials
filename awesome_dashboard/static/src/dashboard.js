@@ -6,10 +6,13 @@ import {Layout} from "@web/search/layout"
 import {useService} from "@web/core/utils/hooks";
 import {DashboardItem} from "./dashboardItem/dashboardItem";
 import {rpc} from "@web/core/network/rpc";
+import {PieChart} from "./pie_chart/pieChart";
+
+// import PieChart from "./pie_chart/pieChart";
 
 class AwesomeDashboard extends Component {
     static template = "awesome_dashboard.AwesomeDashboard";
-    static components = {Layout, DashboardItem};
+    static components = {Layout, DashboardItem, PieChart};
 
     setup() {
         this.action = useService("action");
@@ -24,6 +27,7 @@ class AwesomeDashboard extends Component {
             const result = await this.statisticsService.loadStatistics();
             // const result = await rpc("/awesome_dashboard/statistics");
             this.result = result;
+
             // debugger
         });
     }
