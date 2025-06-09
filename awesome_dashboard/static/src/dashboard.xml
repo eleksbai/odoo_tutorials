@@ -3,13 +3,15 @@
     <t t-name="awesome_dashboard.AwesomeDashboard">
         <div class="o_action">
             <div class="m-2">
-            <button class="btn btn-primary" t-on-click="openCustomers">Customers</button>
+                <button class="btn btn-primary" t-on-click="openCustomers">Customers</button>
                 <button class="btn btn-primary " t-on-click="openLead">Leads</button>
                 <span>
 
                 </span>
+                <button class="btn btn-primary " t-on-click="printLog">printLog</button>
             </div>
-            z
+
+
             <Layout display="{ controlPanel: {} }" className="'o_dashboard h-100'">
 <!--                <p>Hello World</p>-->
                 <DashboardItem title="'测试1'">
@@ -25,30 +27,31 @@
                         <p>Number of new orders this month：
 
                         </p>
-                    <p class="text-success fs-1">  <t t-esc="result.average_quantity"/></p>
+                    <p class="text-success fs-1">  <t t-esc="statistics.average_quantity"/></p>
                 </DashboardItem>
                 <DashboardItem title="'本月新订单总额'">
                         <p>Total amount of new orders this month：
 
 
                         </p>
-                    <p class="text-success fs-1">  <t t-esc="result.total_amount"/> </p>
+                    <p class="text-success fs-1">  <t t-esc="statistics.total_amount"/> </p>
                 </DashboardItem>
                 <DashboardItem title="'本月按订单计算的平均 T 恤数量'">
                         <p>Average amount of t-shirt by order this month：</p>
-                    <p class="text-success fs-1"><t t-esc="result.average_time"/> </p>
+                    <p class="text-success fs-1"><t t-esc="statistics.average_time"/> </p>
                 </DashboardItem>
                 <DashboardItem title="'本月取消的订单数量'">
                         <p>Number of cancelled orders this month：</p>
-                    <p class="text-success fs-1"><t t-esc="result.average_time"/></p>
+                    <p class="text-success fs-1"><t t-esc="statistics.average_time"/></p>
                 </DashboardItem>
                 <DashboardItem title="'订单从“新”变为“已发送”或“已取消”的平均时间'">
                         <p>Average time for an order to go from ‘new’ to ‘sent’ or ‘cancelled’：
                             </p>
-                    <p class="text-success fs-1"><t t-esc="result.average_time"/></p>
+                    <p class="text-success fs-1"><t t-esc="statistics.average_time"/></p>
                 </DashboardItem>
-                <DashboardItem size="2">
-                    <PieChart labels="Object.keys(result.orders_by_size)" data="Object.values(result.orders_by_size)"/>
+                <DashboardItem title="'尺码分布'" size="2">
+<!--                    labels="Object.keys(statistics.orders_by_size)" data="Object.values(statistics.orders_by_size)"-->
+                    <PieChart statistics="statistics"/>
                 </DashboardItem>
             </Layout>
         </div>

@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import {Component, onWillStart} from "@odoo/owl";
+import {Component, onWillStart, useState} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {Layout} from "@web/search/layout"
 import {useService} from "@web/core/utils/hooks";
@@ -16,20 +16,16 @@ class AwesomeDashboard extends Component {
 
     setup() {
         this.action = useService("action");
-        this.result = {}
+
         console.log("setup")
-        this.shareStateService = useService("shared_state");
         this.statisticsService = useService("awesome_dashboard.statistics");
-        onWillStart(async () => {
-            // debugger
-            //
 
-            const result = await this.statisticsService.loadStatistics();
-            // const result = await rpc("/awesome_dashboard/statistics");
-            this.result = result;
+        this.statistics = useState(this.statisticsService.data);
 
-            // debugger
-        });
+
+        // onWillStart(async () => {
+        //     this.statistics = useState(await this.statisticsService.data);
+        // })
     }
 
     // onWillStart() {
@@ -51,6 +47,12 @@ class AwesomeDashboard extends Component {
     openLead() {
         this.action.doAction("crm.crm_lead_all_leads");
         // this.action.doAction("crm.crm_lead_action_my_activities_view_tree");
+    }
+
+    printLog() {
+        console.log("openDebug")
+        console.log(this.statistics)
+        // debugger
     }
 
 }
