@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="awesome_dashboard.dashboard_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/awesome_dashboard/static/src/dashboard/dashboard.js"/>
+            <link rel="stylesheet" href="/awesome_dashboard/static/src/dashboard/dashboard.scss"/>
+        </xpath>
+    </template>
+</odoo>

@@ -20,6 +20,7 @@
 
     'data': [
         'views/views.xml',
+        'views/asset.xml',
     ],
     'assets': {
         'web.assets_backend': [

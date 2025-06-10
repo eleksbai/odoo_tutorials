@@ -63,9 +63,9 @@ export class PieChart extends Component {
 
     debugPieChart() {
         console.log(this.props);
-        debugger;
+        // debugger;
         this.myCount++
-        debugger;
+        // debugger;
         // this.state.data.m += this.myCount
         this.state.data = this.props.statistics.orders_by_size
         this.renderChart()
