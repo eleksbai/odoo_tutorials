@@ -1,3 +1,8 @@
 .o_dashboard {
   background-color: darkgray;
 }
+
+.dashboard {
+  display: flex;
+  align-items: flex-start; /* 子元素顶部对齐 */
+}

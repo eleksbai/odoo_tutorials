@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+  <t t-name="awesome_dashboard.dashboarditem">
+<!--    <div class="card d-inline-block m-2" t-att-style="`width: ${width}rem;`">-->
+      <!--           <div class="card-body">-->
+      <!--               <h5 class="card-title">-->
+      <!--                  <t t-esc="props.title"/>-->
+      <!--               </h5>-->
+      <!--               <t t-slot="default">-->
+      <!--                   Default....-->
+      <!--                 </t>-->
+      <!--           </div>-->
+      <!--       </div>-->
+
+      <div class="dashboard-item card d-inline-block m-2" t-att-style="`width: ${width}rem;`">
+<!--      <div class="dashboard-item card d-inline-block m-2" t-att-style="`flex: ${width}`">-->
+          <t t-component="props.Component" t-props="props.props"/>
+        </div>
+  </t>
+</templates>

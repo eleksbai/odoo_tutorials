@@ -1,12 +1,19 @@
-// PieChart.js
+/** @odoo-module **/
+
 import {Component, useEffect, useState, onWillStart, onMounted, onWillUpdateProps} from "@odoo/owl";
 import {loadJS} from "@web/core/assets";
 
-export class PieChart extends Component {
-    static template = "awesome_dashboard.PieChartTemplate"; // 指定模板名称
-    static description = "PieChart";
-    // static props = {statistics,}
-    static props = ['statistics'];
+import {xml} from "@odoo/owl";
+
+export class PieChartCard extends Component {
+    static template = xml`
+             <div class="card-body  pie-chart-container">
+                <canvas id="pieChart"/>
+             </div>
+            `;
+    static description = "PieChartCard description"
+
+    // static props = ['statistics'];
 
 
     setup() {
@@ -41,7 +48,8 @@ export class PieChart extends Component {
         useEffect(() => {
             console.log("Count changed:", this.state.count);
             // this.handleCountChange();
-            this.state.data = this.props.statistics.orders_by_size
+
+            this.state.data = this.props.data.orders_by_size
             this.renderChart()
         }); // 依赖数组中包含 state.count
 
@@ -55,11 +63,6 @@ export class PieChart extends Component {
         console.log("Count changed:", this.state.count);
     }
 
-    mounted() {
-        console.log('Component has been mounted');
-        // 在这里可以进行 DOM 操作或其他初始化操作
-        this.mounted()
-    }
 
     debugPieChart() {
         console.log(this.props);
@@ -84,13 +87,14 @@ export class PieChart extends Component {
     }
 
     renderChart() {
+        // return
         // 获取 canvas 元素
         const el = document.getElementById('pieChart');
         const ctx = el.getContext('2d');
-        debugger;
+
         // 从 props 中获取数据和配置
         const {statistics,} = this.props;
-        debugger;
+
 
         console.log("statistics: info");
         console.log(statistics);
